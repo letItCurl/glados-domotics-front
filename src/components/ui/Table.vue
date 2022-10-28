@@ -1,42 +1,40 @@
 <template>
-  <div class="">
-    <div class="mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-      <table
-        class="min-w-full border-separate"
-        style="border-spacing: 0">
-        <thead class="bg-gray-50">
-          <tr>
-            <th
-              v-for="(column, columnMapId) in Object.keys(columnMapping)"
-              :key="columnMapId"
-              scope="col"
-              class="border-b border-gray-300 bg-gray-50 bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8">
-              {{ this.columnMapping[column].columnName }}
-            </th>
-          </tr>
-        </thead>
-        <tbody
-          class="bg-white">
-          <tr
-            v-for="(row, rowIdx) in this.rows"
-            :key="row.rowIdx"
-            @click="handleClick(row)">
-            <td
-              v-for="(column, columnIdx) in Object.keys(row).filter((column) => Object.keys(columnMapping).includes(column))"
-              :key="columnIdx"
-              :class="[rowIdx !== this.rows.length - 1 ? 'border-b border-gray-200' : '', 'whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8']">
+  <div class="mt-3 overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+    <table
+      class="min-w-full border-separate"
+      style="border-spacing: 0">
+      <thead class="bg-gray-50">
+        <tr>
+          <th
+            v-for="(column, columnMapId) in Object.keys(columnMapping)"
+            :key="columnMapId"
+            scope="col"
+            class="border-b border-gray-300 bg-gray-50 bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8">
+            {{ this.columnMapping[column].columnName }}
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white">
+        <tr
+          v-for="(row, rowIdx) in this.rows"
+          :key="row.rowIdx"
+          @click="handleClick(row)"
+          class="hover:bg-gray-100 cursor-pointer">
+          <td
+            v-for="(column, columnIdx) in Object.keys(row).filter((column) => Object.keys(columnMapping).includes(column))"
+            :key="columnIdx"
+            :class="[rowIdx !== this.rows.length - 1 ? 'border-b border-gray-200' : '', 'whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8']">
 
-              <span v-if="(columnMapping[column].badge != false)">
-                <Badge
-                  :color="(columnMapping[column].badge[row[column]]) ? columnMapping[column].badge[row[column]] : defautBadgeColor"
-                  :text="row[column]"/>
-              </span>
-              <span v-else>{{ row[column] }}</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            <span v-if="(columnMapping[column].badge != false)">
+              <Badge
+                :color="(columnMapping[column].badge[row[column]]) ? columnMapping[column].badge[row[column]] : defautBadgeColor"
+                :text="row[column]"/>
+            </span>
+            <span v-else>{{ row[column] }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 

@@ -2,10 +2,11 @@
   <div class="flex flex-col gap-5">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
-        <h1 class="text-xl font-semibold text-indigo-600">Dashboard</h1>
+        <h1 class="text-2xl font-semibold text-indigo-600">Dashboard</h1>
         <p class="mt-2 text-sm text-gray-700">A list of all the entities in your house.</p>
       </div>
     </div>
+    <hr>
     <Table
       :rows="getEntities"
       :column-mapping="columnMapping"
@@ -13,8 +14,7 @@
       v-if="getIsLoading == false">
     </Table>
     <div class="mx-auto mt-3">
-      <Spinner
-        v-if="getIsLoading == true"/>
+      <Spinner v-if="getIsLoading == true"/>
     </div>
     <SlideOver
       :open="slideOverIsOpen"
@@ -42,7 +42,7 @@ export default {
     Table,
     Spinner,
     SlideOver,
-    EntityForm
+    EntityForm,
   },
   created() {
     this.fetchEntities

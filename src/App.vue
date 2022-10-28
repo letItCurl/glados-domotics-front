@@ -13,9 +13,7 @@ import { mapGetters } from "vuex"
 
 export default {
   name: "Dashboard",
-  components: {
-    Notification,
-  },
+  components: { Notification, },
 
   computed: {
     ...mapGetters([

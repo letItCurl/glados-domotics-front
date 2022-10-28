@@ -5,7 +5,14 @@
     <Dialog
       as="div"
       class="relative z-10">
-      <TransitionChild as="template" enter="ease-in-out duration-500" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in-out duration-500" leave-from="opacity-100" leave-to="opacity-0">
+      <TransitionChild
+        as="template"
+        enter="ease-in-out duration-500"
+        enter-from="opacity-0"
+        enter-to="opacity-100"
+        leave="ease-in-out duration-500"
+        leave-from="opacity-100"
+        leave-to="opacity-0">
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
       </TransitionChild>
       <div class="fixed inset-0 overflow-hidden">
@@ -48,7 +55,9 @@
 </template>
 
 <script>
-import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from "@headlessui/vue"
+import {
+  Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot 
+} from "@headlessui/vue"
 
 export default {
   props: [ "open", "title" ],

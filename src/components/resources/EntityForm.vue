@@ -77,7 +77,9 @@
       </div>
 
       <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:pt-5">
-        <label for="number" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Value</label>
+        <label
+          for="number"
+          class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Value</label>
         <div class="mt-1 sm:col-span-2 sm:mt-0">
           <input
             type="number"
@@ -105,9 +107,7 @@ import Spinner from "../ui/Spinner.vue"
 
 export default {
   props: [ "entity" ],
-  components: {
-    Spinner
-  },
+  components: { Spinner },
   data() {
     return {
       editedEntity: {},
@@ -122,19 +122,22 @@ export default {
     }
   },
   created() {
-    this.editedEntity = {...this.entity}
+    this.editedEntity = { ...this.entity }
   },
   methods: {
     onSubmit() {
       const isFormPristine = (JSON.stringify(this.entity) == JSON.stringify(this.editedEntity))
       if (isFormPristine) {
-        this.$emit('submit')
+        this.$emit("submit")
       } else {
         this.submitting = true
         this.$store
-          .dispatch('updateEntity', { id: this.entity.id, payload: this.editedEntity})
+          .dispatch("updateEntity", {
+            id: this.entity.id,
+            payload: this.editedEntity 
+          })
           .finally(() => {
-            this.$emit('submit')
+            this.$emit("submit")
             this.submitting = false
           })
       }

@@ -32,13 +32,9 @@
 
 <script>
 export default {
-  props: {
-    text: String,
-  },
+  props: { text: String, },
   data() {
-    return {
-      show: true
-    }
+    return { show: true }
   }
 }
 </script>
