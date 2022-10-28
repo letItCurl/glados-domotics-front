@@ -4,4 +4,7 @@ export default {
   getEntities() {
     return coreApiClient.sendRequest("get", "/entities", {})
   },
+  patchEntity(id, payload) {
+    return coreApiClient.sendRequest("patch", `/entities/${id}`, payload)
+  },
 }

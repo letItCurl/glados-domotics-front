@@ -9,7 +9,6 @@
     <Table
       :rows="getEntities"
       :column-mapping="columnMapping"
-      :show-data-if="getIsError == false"
       @row-clicked="handleRowClicked"
       v-if="getIsLoading == false">
     </Table>
@@ -22,7 +21,9 @@
       @close="onClose"
       title="Edit entity"
       v-if="getIsLoading == false">
-      <EntityForm :entity="entityToEdit"/>
+      <EntityForm
+        @submit="this.slideOverIsOpen = false"
+        :entity="entityToEdit"/>
     </SlideOver>
   </div>
 </template>

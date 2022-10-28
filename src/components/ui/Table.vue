@@ -10,14 +10,13 @@
               v-for="(column, columnMapId) in Object.keys(columnMapping)"
               :key="columnMapId"
               scope="col"
-              class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8">
+              class="border-b border-gray-300 bg-gray-50 bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8">
               {{ this.columnMapping[column].columnName }}
             </th>
           </tr>
         </thead>
         <tbody
-          class="bg-white"
-          v-if="showDataIf">
+          class="bg-white">
           <tr
             v-for="(row, rowIdx) in this.rows"
             :key="row.rowIdx"
@@ -53,7 +52,7 @@
 import Badge from "../ui/Badge.vue"
 
 export default {
-  props: ["rows", "columnMapping", "showDataIf"],
+  props: ["rows", "columnMapping"],
   components: { Badge },
   data() {
     return { defautBadgeColor: "gray" }

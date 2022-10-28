@@ -8,30 +8,47 @@ export default createStore({
     isError: false
   },
   mutations: {
-    clearEntities(state) {
-      state.entities = []
+    replaceEntities(state, payload) {
+      state.entities = payload
+    },
+    updateEntity(state, payload) {
+      state.entities = [...state.entities.filter((entity) => payload.id != entity.id), payload]
     }
   },
   actions: {
     fetchEntities({ commit, state }) {
       const currentEntities = [...state.entities]
 
-      commit("clearEntities")
+      commit("replaceEntities", [])
 
       state.isLoading = true
 
       // @TODO_CURRENT_PR: We could improve with async await.
       coreApi.glados.getEntities()
         .then((entities) => {
-          state.entities = entities
+          commit("replaceEntities", entities)
         })
         .catch((error) => {
           console.error(error)
-          state.entities = currentEntities
+          commit("replaceEntities", currentEntities)
           state.isError = true
         })
         .finally(() => {
           state.isLoading = false
+        })
+    },
+    updateEntity({ commit, state }, { id, payload }) {
+      const currentEntities = [...state.entities]
+
+      // @TODO_CURRENT_PR: We could improve with async await.
+      return coreApi.glados.patchEntity(id, payload)
+        .then((entity) => {
+          commit("updateEntity", entity)
+        })
+        .catch((error) => {
+          console.error(error)
+          commit("replaceEntities", currentEntities)
+          state.isError = true
         })
     }
   },
