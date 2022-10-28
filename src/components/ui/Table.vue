@@ -20,7 +20,8 @@
           v-if="showDataIf">
           <tr
             v-for="(row, rowIdx) in this.rows"
-            :key="row.rowIdx">
+            :key="row.rowIdx"
+            @click="handleClick(row)">
             <td
               v-for="(column, columnIdx) in Object.keys(row).filter((column) => Object.keys(columnMapping).includes(column))"
               :key="columnIdx"
@@ -56,6 +57,11 @@ export default {
   components: { Badge },
   data() {
     return { defautBadgeColor: "gray" }
+  },
+  methods: {
+    handleClick(row) {
+      this.$emit("rowClicked", row)
+    }
   }
 }
 </script>
