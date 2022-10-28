@@ -41,6 +41,14 @@
 </template>
 
 <script>
+// @NOTE:
+// Quick documentation of how this works:
+// This component build tables with given rows and a mapping variable that tell to the component wich
+// row's should be printed, wich data should be badged and also what is their label (i.e column name with i18n)
+//
+// Example in Dashboard.vue component.
+//
+// On the field, I would use https://storybook.js.org/ to document this component.
 import Badge from "../ui/Badge.vue"
 
 export default {
