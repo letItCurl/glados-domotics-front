@@ -22,11 +22,13 @@
       v-if="getIsLoading == false">
     </Table>
     <div class="mx-auto mt-3">
-      <Spinner v-if="getIsLoading == true"/>
+      <Spinner
+        v-if="getIsLoading == true"/>
     </div>
     <SlideOver
       :open="slideOverIsOpen"
       @close="onClose"
+      title="Edit entity"
       v-if="getIsLoading == false"/>
   </div>
 </template>
@@ -47,6 +49,7 @@ export default {
   data() {
     return {
       entities: [],
+      entityToEdit: {},
       slideOverIsOpen: false,
       columnMapping: {
         "name": {
@@ -77,12 +80,11 @@ export default {
   },
   methods: {
     handleRowClicked(row) {
-      console.log(row)
+      this.entityToEdit = row
       this.slideOverIsOpen = true
-      console.log(this.slideOverIsOpen)
     },
     onClose() {
-      console.log("On close")
+      this.entityToEdit = {}
       this.slideOverIsOpen = false
     }
   },
