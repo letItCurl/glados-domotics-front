@@ -18,6 +18,8 @@ export default createStore({
 
       commit("clearEntities")
 
+      state.isLoading = true
+
       // @TODO_CURRENT_PR: We could improve with async await.
       coreApi.glados.getEntities()
         .then((entities) => {

@@ -1,6 +1,6 @@
 <template>
-  <div class="px-4 sm:px-6 lg:px-8">
-    <div class="-mx-4 mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
+  <div class="">
+    <div class="mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
       <table
         class="min-w-full border-separate"
         style="border-spacing: 0">
@@ -15,7 +15,9 @@
             </th>
           </tr>
         </thead>
-        <tbody class="bg-white">
+        <tbody
+          class="bg-white"
+          v-if="showDataIf">
           <tr
             v-for="(row, rowIdx) in this.rows"
             :key="row.rowIdx">
@@ -42,12 +44,10 @@
 import Badge from "../ui/Badge.vue"
 
 export default {
-  props: ["rows", "columnMapping"],
+  props: ["rows", "columnMapping", "showDataIf"],
   components: { Badge },
   data() {
-    return {
-      defautBadgeColor: "gray"
-    }
+    return { defautBadgeColor: "gray" }
   }
 }
 </script>
