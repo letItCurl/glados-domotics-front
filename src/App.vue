@@ -7,8 +7,10 @@
   </div>
 </template>
 <script>
+// @NOTE:
+// On L6, a more specefic explanation could be done by rendering server error.
+// Validation errors, etc
 import Notification from "./components/ui/Notification.vue"
-
 import { mapGetters } from "vuex"
 
 export default {

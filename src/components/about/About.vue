@@ -74,7 +74,16 @@
 </template>
 
 <script>
-// The easy fast way: this.$refs.rootNode.textContent
+// @NOTE:
+// I could use `this.$refs.rootNode.textContent`, but let's have fun toegether !
+// First I had to reformat a bit the html, such that every text would be enclosed in a div with no children divs.
+// Then I used a breath first search traversal to label each word.
+// Finally I use `setInterval` to change the colors of each word.
+
+// @NOTE:
+// The color motion dosn't properly match the word reading:
+// It is normal, I'm coloring words without taking in consideration the punctuation...
+// There is room for improvments
 export default {
   name: "About",
   data() {

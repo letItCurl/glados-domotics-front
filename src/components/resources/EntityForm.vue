@@ -78,13 +78,13 @@
 
       <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:pt-5">
         <label
-          for="number"
+          for="value"
           class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Value</label>
         <div class="mt-1 sm:col-span-2 sm:mt-0">
           <input
-            type="number"
+            type="text"
             name="value"
-            id="number"
+            id="value"
             v-model="editedEntity.value"
             class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm" />
         </div>
@@ -130,11 +130,15 @@ export default {
       if (isFormPristine) {
         this.$emit("submit")
       } else {
+        // @NOTE: This is a hack.
+        // This remove the keys wich values are `null`.
+        // Normaly it is the backend that would show in the response the errors validation.
+        Object.keys(this.editedEntity).forEach((k) => this.editedEntity[k] == null && delete this.editedEntity[k])
         this.submitting = true
         this.$store
           .dispatch("updateEntity", {
             id: this.entity.id,
-            payload: this.editedEntity 
+            payload: this.editedEntity
           })
           .finally(() => {
             this.$emit("submit")
